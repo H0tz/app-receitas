@@ -6,4 +6,6 @@ Pre requisitos: NodeJS 8.10 > & NPM > 10
 
 3° passo -> $ npm install
 
-4° passo -> entrar no link http://localhost:3000/
+4° passo -> $ npm start
+
+5° passo -> entrar no link http://localhost:3000/
