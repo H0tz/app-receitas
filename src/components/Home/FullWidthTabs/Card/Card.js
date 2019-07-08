@@ -20,6 +20,7 @@ import '../../../Fonts/Fonts.css';
 const useStyles = makeStyles(theme => ({
   card: {
     margin: '0 auto',
+    padding: 30,
   },
   media: {
     height: 0,
