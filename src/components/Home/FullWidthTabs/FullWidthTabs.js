@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -54,7 +54,10 @@ const useStyles = makeStyles(theme => ({
   cards: {
     textAlign: 'center',
     margin: '0 auto',
-  }
+  },
+  blocoEscondido: {
+    display: 'block',
+  },
 }));
 
 export default function FullWidthTabs() {
@@ -241,25 +244,28 @@ export default function FullWidthTabs() {
                 </div>
               ))}
             </SwipeableViews>
-
-            <MobileStepper
-              steps={maxSteps}
-              position="static"
-              variant="text"
-              activeStep={activeStep}
-              nextButton={
-                <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1 || maxSteps === 0}>
-                  Next
-              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                </Button>
-              }
-              backButton={
-                <Button size="small" onClick={handleBack} disabled={activeStep === 0 || maxSteps === 0}>
-                  {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                  Back
-            </Button>
-              }
-            />
+            
+            {getReceitasByCategoria(categoria.id).length > 0 &&
+            
+              <MobileStepper
+                steps={maxSteps}
+                position="static"
+                variant="text"
+                activeStep={activeStep}
+                nextButton={
+                  <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1 || maxSteps === 0}>
+                    Next
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                  </Button>
+                }
+                backButton={
+                  <Button size="small" onClick={handleBack} disabled={activeStep === 0 || maxSteps === 0}>
+                    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                    Back
+                  </Button>
+                }
+              />
+            }
           </TabContainer>
         ))}
       </SwipeableViews>

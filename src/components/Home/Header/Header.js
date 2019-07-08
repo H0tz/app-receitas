@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import Searchbar from './Searchbar';
+import '../../Fonts/Fonts.css';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,6 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
   titulo: {
     margin: '0 auto',
+    fontFamily: "'Raleway', sans-serif",
+    textTransform: 'uppercase',
   }
 }));
 

@@ -15,10 +15,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import '../../../Fonts/Fonts.css';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 345,
     margin: '0 auto',
   },
   media: {
@@ -38,6 +38,10 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: red[500],
   },
+  titulo: {
+    fontFamily: "'Raleway', sans-serif",
+    textTransform: 'uppercase',
+  },
 }));
 
 export default function RecipeReviewCard({receita}) {
@@ -51,6 +55,9 @@ export default function RecipeReviewCard({receita}) {
   return (
     <Card className={classes.card}>
       <CardHeader
+        classes={{
+          title: classes.titulo,
+        }}
         avatar={
           <Avatar aria-label="Recipe" className={classes.avatar}>
             {receita.autor.substring(0, 1)}
