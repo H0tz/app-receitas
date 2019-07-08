@@ -94,7 +94,7 @@ export default function FullWidthTabs(props) {
 
   useEffect(() => {
     setMaxSteps(getReceitasByCategoria(0).length);
-    // setActiveStep(0);
+    setActiveStep(0);
   },[getReceitasByCategoria]);
 
   function handleChange(event, newValue) {
@@ -147,7 +147,7 @@ export default function FullWidthTabs(props) {
               ))}
             </SwipeableViews>
             
-            {getReceitasByCategoria(categoria.id).length > 0 &&
+            {getReceitasByCategoria(categoria.id).length > 0 ?
             
               <MobileStepper
                 steps={maxSteps}
@@ -167,7 +167,7 @@ export default function FullWidthTabs(props) {
                   </Button>
                 }
               />
-            }
+            : <p>Nenhuma receita encontrada para essa categoria =(</p>}
           </TabContainer>
         ))}
       </SwipeableViews>

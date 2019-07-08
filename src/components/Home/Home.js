@@ -29,9 +29,6 @@ export default function Home(props) {
   React.useEffect(() => setReceitas(receitasJson), []);
 
   function onChangeSearchBar(e){
-    console.log(receitas)
-    console.log('alo', e.target.value);
-
     setReceitas(receitasJson.filter(receita => receita.titulo.toUpperCase().includes(e.target.value.toUpperCase())));
   }
 
