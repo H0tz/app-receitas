@@ -19,14 +19,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Header() {
+export default function Header(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div className={classes.header}>
         <h1 className={classes.titulo}>Minhas Receitas</h1>
-        <Searchbar />
+        <Searchbar onChange={props.onChangeSearchBar}/>
       </div>
     </div>
   )

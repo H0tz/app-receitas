@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function FullWidthTabs() {
+export default function FullWidthTabs(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -88,121 +88,23 @@ export default function FullWidthTabs() {
     { id: 5, nome: "Novas" },
   ];
 
-  const receitas = [
-    {
-      id: 0,
-      titulo: "Chocolate quente cremoso",
-      ingredientes: [
-        {
-          id: 0,
-          qtd: 2,
-          descricao: "xícaras (chá) de leite",
-        },
-        {
-          id: 1,
-          qtd: 1,
-          descricao: "colher (sopa) de amido de milho",
-        },
-        {
-          id: 2,
-          qtd: 3,
-          descricao: "colheres (sopa) de chocolate em pó",
-        },
-        {
-          id: 3,
-          qtd: 4,
-          descricao: "colheres (sopa) de açúcar",
-        },
-        {
-          id: 4,
-          qtd: 1,
-          descricao: "canela em pau",
-        },
-        {
-          id: 5,
-          qtd: 1,
-          descricao: "caixinha de creme de leite",
-        }
-      ],
-      resumo: "This impressive paella is a perfect party dish and a fun meal to cook together with your guests.",
-      autor: "Beep",
-      categoria: 1,
-      img: "https://img.itdg.com.br/tdg/images/recipes/000/130/871/321194/321194_original.jpg?mode=crop&width=710&height=400",
-      preparo: "Em um liquidificador, bata o leite, o amido de milho, o chocolate em pó e o açúcar. Despeje a mistura em uma panela com a canela e leve ao fogo baixo, mexendo sempre até ferver. Desligue, adicione o creme de leite e mexa bem até obter uma mistura homogênea. Retire a canela e sirva quente."
-    },
-    {
-      id: 1,
-      titulo: "Bolo de iogurte e creme de avelã",
-      ingredientes: [
-        {
-          id: 0,
-          qtd: 1,
-          descricao: "pote de iogurte natural de 170 g",
-        },
-        {
-          id: 1,
-          qtd: 3,
-          descricao: "ovos",
-        },
-        {
-          id: 2,
-          qtd: 1,
-          descricao: "pote (do iogurte) de açúcar",
-        },
-        {
-          id: 3,
-          qtd: 1,
-          descricao: "pote (do iogurte) de chocolate em pó",
-        },
-        {
-          id: 4,
-          qtd: 3,
-          descricao: "potes (do iogurte) de farinha de trigo",
-        },
-        {
-          id: 5,
-          qtd: 1,
-          descricao: "colher (sopa) de fermento",
-        },
-        {
-          id: 6,
-          qtd: "1 ou 2",
-          descricao: "potes de 350 g de creme de avelã para rechear e cobrir (se quiser cobrir e rechear, use 2)",
-        },
-        {
-          id: 7,
-          qtd: 1,
-          descricao: "pote (do iogurte) de óleo",
-        }
-      ],
-      resumo: "This impressive paella is a perfect party dish and a fun meal to cook together with your guests.",
-      autor: "Beep",
-      categoria: 1,
-      img: "https://img.itdg.com.br/tdg/images/recipes/000/139/114/70979/70979_original.jpg?mode=crop&width=710&height=400",
-      preparo: "Em uma tigela, misture com um batedor os ovos e o iogurte. Acrescente o óleo e o açúcar e misture bem. Coloque o chocolate e a farinha aos poucos, misturando. Por último o fermento coloque em forma de 20 cm de diâmetro, untada e enfarinhada. Asse em forno preaquecido, a 180° C, por aproximadamente 40 minutos, ou até furar com um palito e sair limpo. Se desejar rechear, corte o bolo ao meio e coloque creme de avelã, senão, apenas cubra. Coloque a outra parte do bolo e cubra todo com creme de avelã."
-    },
-  ];
-
+  const getReceitasByCategoria = React.useCallback((categoria) => {
+    return categoria === 0 ? props.receitas : props.receitas.filter(receita => receita.categoria === categoria);
+  }, [props.receitas]);
 
   useEffect(() => {
     setMaxSteps(getReceitasByCategoria(0).length);
     // setActiveStep(0);
-  });
+  },[getReceitasByCategoria]);
 
   function handleChange(event, newValue) {
     setValue(newValue);
-    console.log(getReceitasByCategoria(newValue).length);
     setMaxSteps(getReceitasByCategoria(newValue).length);
     setActiveStep(0);
-    console.log(activeStep);
   }
 
   function handleChangeIndex(index) {
     setValue(index);
-  }
-
-  function getReceitasByCategoria(categoria) {
-    return categoria === 0 ? receitas : receitas.filter(receita => receita.categoria === categoria);
   }
 
   return (

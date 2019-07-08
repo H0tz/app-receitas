@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function Searchbar() {
+export default function Searchbar(props) {
   const classes = useStyles();
 
   return (
@@ -46,6 +46,7 @@ export default function Searchbar() {
         
         <InputBase
           className={classes.input}
+          onChange={props.onChange}
           placeholder="Busque por receitas"
           inputProps={{ 'aria-label': 'Busque por receitas' }}
         />
