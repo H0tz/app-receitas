@@ -55,9 +55,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     margin: '0 auto',
   },
-  blocoEscondido: {
-    display: 'block',
-  },
 }));
 
 export default function FullWidthTabs() {
